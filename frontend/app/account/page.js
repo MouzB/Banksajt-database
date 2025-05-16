@@ -8,7 +8,7 @@ export default function Account() {
 
   useEffect(() => {
     if (token) {
-      fetch('http://localhost:3001/me/accounts', {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/me/accounts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }),
@@ -19,7 +19,7 @@ export default function Account() {
   }, [token]);
 
   const handleDeposit = async () => {
-    const res = await fetch('http://localhost:3001/me/accounts/transactions', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/me/accounts/transactions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token, amount: parseInt(amount) }),
